@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.CommandBindings>
-        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted" CanExecute="ExitCanExecute"/>
-        <CommandBinding Command="Open" Executed="OpenExecuted"/>
-        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        <CommandBinding Command="local:MyCommands.Exit" 
+                        Executed="ExitExecuted" 
+                        CanExecute="ExitCanExecute"/>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -18,57 +18,83 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" VerticalContentAlignment="Top"  Margin="5" Padding="5">
+            <Menu DockPanel.Dock="Top"
+                  VerticalContentAlignment="Top"
+                  Margin="5"
+                  Padding="5">
                 <MenuItem Header="_Файл">
-                    <MenuItem Header="_Открыть" Command="ApplicationCommands.Open"/>
-                    <MenuItem Header="_Сохранить" Command="Save"/>
+                    <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
+                    <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
                     <Separator/>
                     <MenuItem Command="local:MyCommands.Exit"/>
                 </MenuItem>
                 <MenuItem Header="Правка">
-                    <MenuItem Header="Копировать" Command="Copy" CommandTarget="{Binding ElementName=textBox}"/>
-                    <MenuItem Header="Вставить" Command="Paste" CommandTarget="{Binding ElementName=textBox}"/>
+                    <MenuItem Header="Копировать"
+                              Command="Copy"
+                              CommandTarget="{Binding ElementName=textBox}"/>
+                    <MenuItem Header="Вставить"
+                              Command="Paste"
+                              CommandTarget="{Binding ElementName=textBox}"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
         <ToolBarTray Grid.Row="1" Height="auto">
             <ToolBar>
-                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="200">
-                    <TextBlock Text="Arial"/>
-                    <TextBlock Text="Times New Roman"/>
-                    <TextBlock Text="Verdana"/>
-                </ComboBox>
-                <ComboBox Margin="5" Padding="5" SelectedIndex="2" Width="50">
-                    <TextBlock Text="12"/>
-                    <TextBlock Text="14"/>
-                    <TextBlock Text="16"/>
-                </ComboBox>
+                <ComboBox Margin="5" 
+                          Padding="5" 
+                          SelectedIndex="0"
+                          Width="200"
+                          SelectionChanged="ComboBox_SelectionChanged"
+                          ItemsSource="{StaticResource fonts}"/>
+                <ComboBox Margin="5" 
+                          Padding="5"
+                          SelectedIndex="2" 
+                          Width="50"
+                          SelectionChanged="ComboBox_SelectionChanged_1"
+                          ItemsSource="{StaticResource sizes}"/>
             </ToolBar>
             <ToolBar  Margin="5" Padding="5">
-                <Button  Background="#FFE0D9D9">
+                <Button  Background="#FFE0D9D9"
+                         Click="Button_Click">
                     <Image Source="Data/Bold.png"/>
                 </Button>
                 <Separator/>
-                <Button  Background="#FFDAD9E0">
+                <Button  Background="#FFDAD9E0"
+                         Click="Button_Click_1">
                     <Image Source="Data/Italic.png"/>
                 </Button>
                 <Separator/>
-                <Button Background="#FFDAD9E0">
+                <Button Background="#FFDAD9E0"
+                        Click="Button_Click_2">
                     <Image Source="Data/underline.png"/>
                 </Button>
                 <Separator/>
             </ToolBar>
             <ToolBar Margin="5" Padding="5">
                 <StackPanel VerticalAlignment="Center">
-                    <RadioButton Content="черный" IsChecked="True"/>
-                    <RadioButton Content="красный"/>
+                    <RadioButton Content="черный" IsChecked="True"
+                                 Click="RadioButton_Checked"/>
+                    <RadioButton Content="красный"
+                                 Click="RadioButton_Checked_1"/>
                 </StackPanel>
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="textBox" Grid.Row="2" Margin="3" Padding="5" FontSize="16" 
-                 FontFamily="Arial" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto">
+        <TextBox x:Name="textBox" 
+                 Grid.Row="2"
+                 Margin="3" 
+                 Padding="5"
+                 FontSize="16" 
+                 FontFamily="Arial" 
+                 TextWrapping="Wrap" 
+                 VerticalScrollBarVisibility="Auto">
         </TextBox>
-        <Button Content="Выход" HorizontalAlignment="Right" Margin="0,290,10,10" Grid.Row="2" VerticalAlignment="Center" 
-                Height="auto" Width="200" Command="local:MyCommands.Exit"/>
+        <Button Content="Выход" 
+                HorizontalAlignment="Right"
+                Margin="0,290,10,10"
+                Grid.Row="2"
+                VerticalAlignment="Center" 
+                Height="auto" 
+                Width="200"
+                Command="local:MyCommands.Exit"/>
     </Grid>
 </Window>
