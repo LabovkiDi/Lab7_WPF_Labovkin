@@ -44,16 +44,17 @@
                           Padding="5" 
                           SelectedIndex="0"
                           Width="200"
-                          SelectionChanged="ComboBox_SelectionChanged"
                           ItemsSource="{StaticResource fonts}"
-                          Style="{DynamicResource ComboboxStyle}"/>
+                          Style="{DynamicResource ComboboxStyle}"
+                          x:Name="cbFont"/>
+                
                 <ComboBox Margin="5" 
                           Padding="5"
                           SelectedIndex="2" 
                           Width="50"
-                          SelectionChanged="ComboBox_SelectionChanged_1"
                           ItemsSource="{StaticResource sizes}"
-                          Style="{DynamicResource ComboboxStyle}"/>
+                          Style="{DynamicResource ComboboxStyle}"
+                          x:Name="cbSize"/>
             </ToolBar>
             <ToolBar  Margin="5" Padding="5">
                 <Button  Background="#FFE0D9D9"
@@ -93,8 +94,11 @@
                  Grid.Row="2"
                  Margin="3" 
                  Padding="5"
-                 FontSize="16" 
-                 FontFamily="Arial" 
+                 FontSize="{Binding ElementName=cbSize, Path=Text}" 
+                 FontFamily="{Binding ElementName=cbFont, Path=Text}" 
+                 FontWeight="Normal"
+                 FontStyle="Normal"
+                 Foreground="Black"
                  TextWrapping="Wrap" 
                  VerticalScrollBarVisibility="Auto">
         </TextBox>
